@@ -185,16 +185,795 @@
 <!ATTLIST bundle_pair
         pindex CDATA #REQUIRED
         cindex CDATA #REQUIRED>]>
-<project main-circuit="4-bit sequential multiplier">
-	<circuit name="4-bit sequential multiplier">
-		<switch_bank id="4-bit sequential multiplier:Switch_bank1" size="4" fatPin="false" number="0">
-			<coords x="20" y="20"/>
-		</switch_bank>
-		<switch_bank id="4-bit sequential multiplier:Switch_bank6" size="4" fatPin="false" number="4">
-			<coords x="20" y="170"/>
-		</switch_bank>
-		<switch id="4-bit sequential multiplier:Switch8" number="8" label="Clock">
-			<coords x="20" y="340"/>
+<project main-circuit="multiplier">
+	<circuit name="Dflipflop">
+		<switch id="Dflipflop:Switch0" number="0" label="D">
+			<coords x="30" y="40"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Connector7</parent-of>
 		</switch>
+		<bulb id="Dflipflop:Bulb4" number="4" label="Q&apos;">
+			<coords x="650" y="50"/>
+		</bulb>
+		<bulb id="Dflipflop:Bulb5" number="5" label="Q">
+			<coords x="658" y="160"/>
+		</bulb>
+		<nor id="Dflipflop:Nor1">
+			<coords x="488" y="50"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Connector1</parent-of>
+		</nor>
+		<nor id="Dflipflop:Nor2">
+			<coords x="488" y="160"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Connector3</parent-of>
+		</nor>
+		<connector id="Dflipflop:Connector1">
+			<legs>
+				<leg idx="0" x="545" y="65"/>
+				<leg idx="1" x="585" y="65"/>
+				<leg idx="2" x="625" y="65"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Bulb4</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector2">
+			<legs>
+				<leg idx="0" x="585" y="85"/>
+				<leg idx="1" x="465" y="145"/>
+			</legs>
+			<parent-of pindex="0" cindex="1">Dflipflop:Connector1</parent-of>
+			<parent-of pindex="1" cindex="0">Dflipflop:Nor2</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector3">
+			<legs>
+				<leg idx="0" x="545" y="175"/>
+				<leg idx="1" x="585" y="175"/>
+				<leg idx="2" x="625" y="175"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Bulb5</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector4">
+			<legs>
+				<leg idx="0" x="585" y="155"/>
+				<leg idx="1" x="465" y="95"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">Dflipflop:Nor1</parent-of>
+			<parent-of pindex="0" cindex="1">Dflipflop:Connector3</parent-of>
+		</connector>
+		<switch id="Dflipflop:Switch1" number="1" label="clock">
+			<coords x="10" y="90"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Connector6</parent-of>
+		</switch>
+		<and id="Dflipflop:And1">
+			<coords x="360" y="50"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Or1</parent-of>
+		</and>
+		<and id="Dflipflop:And2">
+			<coords x="360" y="160"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Or2</parent-of>
+		</and>
+		<connector id="Dflipflop:Connector5">
+			<legs>
+				<leg idx="0" x="295" y="75"/>
+				<leg idx="1" x="295" y="115"/>
+				<leg idx="2" x="295" y="165"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:And2</parent-of>
+			<parent-of pindex="0" cindex="1">Dflipflop:And1</parent-of>
+		</connector>
+		<neg id="Dflipflop:Neg1">
+			<coords x="80" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg3</parent-of>
+		</neg>
+		<connector id="Dflipflop:Connector6">
+			<legs>
+				<leg idx="0" x="65" y="105"/>
+				<leg idx="0" x="65" y="105"/>
+				<leg idx="2" x="65" y="125"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg1</parent-of>
+			<parent-of pindex="2" cindex="1">Dflipflop:And3</parent-of>
+		</connector>
+		<and id="Dflipflop:And3">
+			<coords x="220" y="100"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Connector5</parent-of>
+		</and>
+		<connector id="Dflipflop:Connector7">
+			<legs>
+				<leg idx="0" x="95" y="55"/>
+				<leg idx="1" x="275" y="55"/>
+				<leg idx="2" x="275" y="185"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Neg2</parent-of>
+			<parent-of pindex="1" cindex="0">Dflipflop:And1</parent-of>
+		</connector>
+		<neg id="Dflipflop:Neg2">
+			<coords x="300" y="170"/>
+			<parent-of pindex="1" cindex="1">Dflipflop:And2</parent-of>
+		</neg>
+		<neg id="Dflipflop:Neg3">
+			<coords x="120" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg4</parent-of>
+		</neg>
+		<neg id="Dflipflop:Neg4">
+			<coords x="170" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:And3</parent-of>
+		</neg>
+		<switch id="Dflipflop:Switch2" number="2" label="clear">
+			<coords x="80" y="180"/>
+			<parent-of pindex="0" cindex="1">Dflipflop:Or2</parent-of>
+		</switch>
+		<switch id="Dflipflop:Switch3" number="3" label="preset">
+			<coords x="80" y="220"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Or1</parent-of>
+		</switch>
+		<or id="Dflipflop:Or1">
+			<coords x="410" y="40"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Nor1</parent-of>
+		</or>
+		<or id="Dflipflop:Or2">
+			<coords x="410" y="170"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Nor2</parent-of>
+		</or>
+	</circuit>
+	<circuit name="4bitDRegister">
+		<card id="4bitDRegister:Dflipflop1" base="Dflipflop">
+			<coords x="460" y="40"/>
+			<parent-of pindex="5" cindex="1">4bitDRegister:Connector9</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop2" base="Dflipflop">
+			<coords x="460" y="160"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector8</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop3" base="Dflipflop">
+			<coords x="460" y="290"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector7</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop4" base="Dflipflop">
+			<coords x="463" y="403"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector6</parent-of>
+		</card>
+		<switch_bank id="4bitDRegister:Switch_bank1" size="4" fatPin="true" number="0" label="DataIn">
+			<coords x="30" y="260"/>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector10</parent-of>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector11</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Connector12</parent-of>
+			<parent-of pindex="3" cindex="0">4bitDRegister:Connector13</parent-of>
+		</switch_bank>
+		<bulb_bank id="4bitDRegister:Bulb_bank1" size="4" fatPin="true" number="7" label="DataOut">
+			<coords x="713" y="103"/>
+		</bulb_bank>
+		<switch id="4bitDRegister:Switch4" number="4" label="Clock">
+			<coords x="50" y="480"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector1</parent-of>
+		</switch>
+		<switch id="4bitDRegister:Switch5" number="5" label="Clear">
+			<coords x="50" y="520"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector2</parent-of>
+		</switch>
+		<connector id="4bitDRegister:Connector1">
+			<legs>
+				<leg idx="0" x="115" y="495"/>
+				<leg idx="1" x="425" y="495"/>
+				<leg idx="2" x="425" y="415"/>
+				<leg idx="3" x="425" y="305"/>
+				<leg idx="4" x="425" y="175"/>
+				<leg idx="5" x="425" y="55"/>
+			</legs>
+			<parent-of pindex="5" cindex="1">4bitDRegister:Dflipflop1</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:Dflipflop2</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:Dflipflop3</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Dflipflop4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector2">
+			<legs>
+				<leg idx="0" x="445" y="535"/>
+				<leg idx="1" x="445" y="425"/>
+				<leg idx="2" x="445" y="315"/>
+				<leg idx="3" x="445" y="185"/>
+				<leg idx="4" x="445" y="65"/>
+			</legs>
+			<parent-of pindex="4" cindex="2">4bitDRegister:Dflipflop1</parent-of>
+			<parent-of pindex="3" cindex="2">4bitDRegister:Dflipflop2</parent-of>
+			<parent-of pindex="2" cindex="2">4bitDRegister:Dflipflop3</parent-of>
+			<parent-of pindex="1" cindex="2">4bitDRegister:Dflipflop4</parent-of>
+		</connector>
+		<switch id="4bitDRegister:Switch6" number="6" label="Load">
+			<coords x="50" y="570"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector3</parent-of>
+		</switch>
+		<neg id="4bitDRegister:Neg1">
+			<coords x="180" y="570"/>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector5</parent-of>
+		</neg>
+		<connector id="4bitDRegister:Connector3">
+			<legs>
+				<leg idx="0" x="115" y="585"/>
+				<leg idx="1" x="145" y="585"/>
+				<leg idx="2" x="165" y="585"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Neg1</parent-of>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector4">
+			<legs>
+				<leg idx="0" x="145" y="585"/>
+				<leg idx="1" x="145" y="455"/>
+				<leg idx="2" x="145" y="325"/>
+				<leg idx="3" x="145" y="195"/>
+				<leg idx="4" x="145" y="85"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">4bitDRegister:And2</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:And4</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:And8</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:And6</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector5">
+			<legs>
+				<leg idx="0" x="245" y="585"/>
+				<leg idx="1" x="245" y="375"/>
+				<leg idx="2" x="245" y="285"/>
+				<leg idx="3" x="245" y="155"/>
+				<leg idx="4" x="245" y="45"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">4bitDRegister:And1</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:And3</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:And7</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:And5</parent-of>
+		</connector>
+		<or id="4bitDRegister:Or1">
+			<coords x="373" y="393"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop4</parent-of>
+		</or>
+		<and id="4bitDRegister:And1">
+			<coords x="303" y="383"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or1</parent-of>
+		</and>
+		<and id="4bitDRegister:And2">
+			<coords x="303" y="433"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or1</parent-of>
+		</and>
+		<connector id="4bitDRegister:Connector6">
+			<legs>
+				<leg idx="0" x="645" y="415"/>
+				<leg idx="1" x="645" y="355"/>
+				<leg idx="2" x="285" y="355"/>
+			</legs>
+			<parent-of pindex="1" cindex="3">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:And1</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector7">
+			<legs>
+				<leg idx="0" x="615" y="285"/>
+				<leg idx="1" x="615" y="245"/>
+				<leg idx="2" x="285" y="245"/>
+			</legs>
+			<parent-of pindex="1" cindex="2">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:And3</parent-of>
+		</connector>
+		<or id="4bitDRegister:Or2">
+			<coords x="370" y="280"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop3</parent-of>
+		</or>
+		<and id="4bitDRegister:And3">
+			<coords x="303" y="263"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or2</parent-of>
+		</and>
+		<and id="4bitDRegister:And4">
+			<coords x="303" y="303"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or2</parent-of>
+		</and>
+		<or id="4bitDRegister:Or3">
+			<coords x="360" y="30"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop1</parent-of>
+		</or>
+		<and id="4bitDRegister:And5">
+			<coords x="300" y="20"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or3</parent-of>
+		</and>
+		<and id="4bitDRegister:And6">
+			<coords x="300" y="60"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or3</parent-of>
+		</and>
+		<or id="4bitDRegister:Or4">
+			<coords x="363" y="153"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop2</parent-of>
+		</or>
+		<and id="4bitDRegister:And7">
+			<coords x="303" y="133"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or4</parent-of>
+		</and>
+		<and id="4bitDRegister:And8">
+			<coords x="303" y="173"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or4</parent-of>
+		</and>
+		<connector id="4bitDRegister:Connector8">
+			<legs>
+				<leg idx="0" x="595" y="175"/>
+				<leg idx="1" x="615" y="175"/>
+				<leg idx="2" x="615" y="115"/>
+				<leg idx="3" x="285" y="115"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">4bitDRegister:And7</parent-of>
+			<parent-of pindex="1" cindex="1">4bitDRegister:Bulb_bank1</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector9">
+			<legs>
+				<leg idx="0" x="625" y="155"/>
+				<leg idx="1" x="625" y="55"/>
+				<leg idx="2" x="625" y="5"/>
+				<leg idx="3" x="285" y="5"/>
+				<leg idx="4" x="285" y="25"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="4" cindex="0">4bitDRegister:And5</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector10">
+			<legs>
+				<leg idx="0" x="165" y="335"/>
+				<leg idx="1" x="165" y="175"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And8</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector11">
+			<legs>
+				<leg idx="0" x="155" y="315"/>
+				<leg idx="1" x="155" y="65"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And6</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector12">
+			<legs>
+				<leg idx="0" x="175" y="355"/>
+				<leg idx="1" x="175" y="305"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector13">
+			<legs>
+				<leg idx="0" x="165" y="385"/>
+				<leg idx="1" x="165" y="435"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And2</parent-of>
+		</connector>
+		<label id="4bitDRegister:Label1" size="13" style="0" color="0">
+			<coords x="690" y="330"/>
+			<text>For each bit of the register,</text>
+		</label>
+		<label id="4bitDRegister:Label2" size="13" style="0" color="0">
+			<coords x="690" y="360"/>
+			<text>D =(Q)(not Load) + (Din)(Load)</text>
+		</label>
+	</circuit>
+	<circuit name="4bit2to1mux">
+		<switch_bank id="4bit2to1mux:Switch_bank1" size="4" fatPin="true" number="0" label="A0">
+			<coords x="140" y="130"/>
+			<parent-of pindex="0" cindex="0" mult="4">4bit2to1mux:And4</parent-of>
+		</switch_bank>
+		<bundler id="4bit2to1mux:Bundler1" width="4" in="1" out="4" mode="BIT_MULTIPLIER">
+			<coords x="230" y="490"/>
+			<parent-of pindex="1" cindex="4" mult="4">4bit2to1mux:And3</parent-of>
+		</bundler>
+		<and id="4bit2to1mux:And3" mult="4">
+			<coords x="330" y="340"/>
+			<parent-of pindex="8" cindex="4" mult="4">4bit2to1mux:Connector3</parent-of>
+		</and>
+		<and id="4bit2to1mux:And4" mult="4">
+			<coords x="330" y="200"/>
+			<parent-of pindex="8" cindex="4" mult="4">4bit2to1mux:Connector4</parent-of>
+		</and>
+		<or id="4bit2to1mux:Or3" mult="4">
+			<coords x="430" y="290"/>
+			<parent-of pindex="8" cindex="0" mult="4">4bit2to1mux:Bulb_bank20</parent-of>
+		</or>
+		<connector id="4bit2to1mux:Connector2">
+			<legs>
+				<leg idx="0" x="125" y="495"/>
+				<leg idx="1" x="145" y="495"/>
+				<leg idx="2" x="145" y="445"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bit2to1mux:Bundler1</parent-of>
+			<parent-of pindex="2" cindex="0">4bit2to1mux:Neg3</parent-of>
+		</connector>
+		<bundler id="4bit2to1mux:Bundler2" width="4" in="1" out="4" mode="BIT_MULTIPLIER">
+			<coords x="200" y="440"/>
+			<parent-of pindex="1" cindex="4" mult="4">4bit2to1mux:And4</parent-of>
+		</bundler>
+		<neg id="4bit2to1mux:Neg3">
+			<coords x="160" y="430"/>
+			<parent-of pindex="1" cindex="0">4bit2to1mux:Bundler2</parent-of>
+		</neg>
+		<connector id="4bit2to1mux:Connector3" mult="4">
+			<legs>
+				<leg idx="0" x="415" y="325"/>
+				<leg idx="1" x="415" y="365"/>
+				<leg idx="2" x="415" y="415"/>
+			</legs>
+			<parent-of pindex="0" cindex="4" mult="4">4bit2to1mux:Or3</parent-of>
+		</connector>
+		<connector id="4bit2to1mux:Connector4" mult="4">
+			<legs>
+				<leg idx="0" x="415" y="165"/>
+				<leg idx="1" x="415" y="225"/>
+				<leg idx="2" x="415" y="305"/>
+			</legs>
+			<parent-of pindex="8" cindex="0" mult="4">4bit2to1mux:Or3</parent-of>
+		</connector>
+		<switch_bank id="4bit2to1mux:Switch_bank20" size="4" fatPin="true" number="4" label="A1">
+			<coords x="140" y="270"/>
+			<parent-of pindex="0" cindex="0" mult="4">4bit2to1mux:And3</parent-of>
+		</switch_bank>
+		<switch id="4bit2to1mux:Switch8" number="8" label="select">
+			<coords x="30" y="480"/>
+			<parent-of pindex="0" cindex="0">4bit2to1mux:Connector2</parent-of>
+		</switch>
+		<bulb_bank id="4bit2to1mux:Bulb_bank20" size="4" fatPin="true" number="9" label="output">
+			<coords x="530" y="280"/>
+		</bulb_bank>
+	</circuit>
+	<circuit name="halfadder">
+		<switch id="halfadder:Switch0" number="0" label="A">
+			<coords x="180" y="70"/>
+			<parent-of pindex="0" cindex="0">halfadder:Connector1</parent-of>
+		</switch>
+		<switch id="halfadder:Switch1" number="1" label="B">
+			<coords x="180" y="170"/>
+			<parent-of pindex="0" cindex="0">halfadder:Connector2</parent-of>
+		</switch>
+		<bulb id="halfadder:Bulb2" number="2" label="C">
+			<coords x="380" y="80"/>
+		</bulb>
+		<bulb id="halfadder:Bulb3" number="3" label="S">
+			<coords x="380" y="160"/>
+		</bulb>
+		<and id="halfadder:And1">
+			<coords x="290" y="80"/>
+			<parent-of pindex="2" cindex="0">halfadder:Bulb2</parent-of>
+		</and>
+		<xor id="halfadder:Xor1">
+			<coords x="290" y="160"/>
+			<parent-of pindex="2" cindex="0">halfadder:Bulb3</parent-of>
+		</xor>
+		<connector id="halfadder:Connector1">
+			<legs>
+				<leg idx="0" x="235" y="85"/>
+				<leg idx="1" x="255" y="85"/>
+				<leg idx="2" x="275" y="85"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">halfadder:And1</parent-of>
+			<parent-of pindex="1" cindex="0">halfadder:Xor1</parent-of>
+		</connector>
+		<connector id="halfadder:Connector2">
+			<legs>
+				<leg idx="0" x="235" y="185"/>
+				<leg idx="1" x="265" y="185"/>
+				<leg idx="2" x="285" y="185"/>
+			</legs>
+			<parent-of pindex="2" cindex="1">halfadder:Xor1</parent-of>
+			<parent-of pindex="1" cindex="1">halfadder:And1</parent-of>
+		</connector>
+	</circuit>
+	<circuit name="fulladder">
+		<card id="fulladder:halfadder1" base="halfadder">
+			<coords x="210" y="140"/>
+			<parent-of pindex="2" cindex="0">fulladder:Or1</parent-of>
+			<parent-of pindex="3" cindex="0">fulladder:halfadder2</parent-of>
+		</card>
+		<card id="fulladder:halfadder2" base="halfadder">
+			<coords x="250" y="220"/>
+			<parent-of pindex="2" cindex="1">fulladder:Or1</parent-of>
+			<parent-of pindex="3" cindex="0">fulladder:Bulb4</parent-of>
+		</card>
+		<switch id="fulladder:Switch0" number="0" label="Cin">
+			<coords x="100" y="100"/>
+			<parent-of pindex="0" cindex="0">fulladder:halfadder1</parent-of>
+		</switch>
+		<switch id="fulladder:Switch1" number="1" label="A">
+			<coords x="100" y="190"/>
+			<parent-of pindex="0" cindex="1">fulladder:halfadder1</parent-of>
+		</switch>
+		<switch id="fulladder:Switch2" number="2" label="B">
+			<coords x="100" y="280"/>
+			<parent-of pindex="0" cindex="1">fulladder:halfadder2</parent-of>
+		</switch>
+		<bulb id="fulladder:Bulb3" number="3" label="Cout">
+			<coords x="530" y="130"/>
+		</bulb>
+		<bulb id="fulladder:Bulb4" number="4" label="S">
+			<coords x="530" y="220"/>
+		</bulb>
+		<or id="fulladder:Or1">
+			<coords x="430" y="130"/>
+			<parent-of pindex="2" cindex="0">fulladder:Bulb3</parent-of>
+		</or>
+	</circuit>
+	<circuit name="4bitadder">
+		<card id="4bitadder:fulladder1" base="fulladder">
+			<coords x="310" y="180"/>
+			<parent-of pindex="4" cindex="0">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector1</parent-of>
+		</card>
+		<card id="4bitadder:fulladder2" base="fulladder">
+			<coords x="280" y="250"/>
+			<parent-of pindex="4" cindex="1">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector2</parent-of>
+		</card>
+		<card id="4bitadder:fulladder3" base="fulladder">
+			<coords x="270" y="310"/>
+			<parent-of pindex="4" cindex="2">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector3</parent-of>
+		</card>
+		<card id="4bitadder:fulladder4" base="fulladder">
+			<coords x="290" y="380"/>
+			<parent-of pindex="4" cindex="3">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="0">4bitadder:Bulb13</parent-of>
+		</card>
+		<bulb_bank id="4bitadder:Bulb_bank1" size="4" fatPin="true" number="9" label="Sum">
+			<coords x="520" y="190"/>
+		</bulb_bank>
+		<switch_bank id="4bitadder:Switch_bank1" size="4" fatPin="true" number="0" label="A">
+			<coords x="90" y="150"/>
+			<parent-of pindex="0" cindex="1">4bitadder:fulladder1</parent-of>
+			<parent-of pindex="1" cindex="1">4bitadder:fulladder2</parent-of>
+			<parent-of pindex="2" cindex="1">4bitadder:fulladder3</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:fulladder4</parent-of>
+		</switch_bank>
+		<switch_bank id="4bitadder:Switch_bank2" size="4" fatPin="true" number="4" label="B">
+			<coords x="90" y="340"/>
+			<parent-of pindex="0" cindex="2">4bitadder:fulladder1</parent-of>
+			<parent-of pindex="1" cindex="2">4bitadder:fulladder2</parent-of>
+			<parent-of pindex="2" cindex="2">4bitadder:fulladder3</parent-of>
+			<parent-of pindex="3" cindex="2">4bitadder:fulladder4</parent-of>
+		</switch_bank>
+		<connector id="4bitadder:Connector1">
+			<legs>
+				<leg idx="0" x="265" y="225"/>
+				<leg idx="1" x="455" y="225"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder2</parent-of>
+		</connector>
+		<connector id="4bitadder:Connector2">
+			<legs>
+				<leg idx="0" x="255" y="295"/>
+				<leg idx="1" x="425" y="295"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder3</parent-of>
+		</connector>
+		<connector id="4bitadder:Connector3">
+			<legs>
+				<leg idx="0" x="255" y="365"/>
+				<leg idx="1" x="425" y="365"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder4</parent-of>
+		</connector>
+		<bulb id="4bitadder:Bulb13" number="13" label="Cout">
+			<coords x="540" y="390"/>
+		</bulb>
+		<switch id="4bitadder:Switch8" number="8" label="Cin">
+			<coords x="190" y="90"/>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder1</parent-of>
+		</switch>
+	</circuit>
+	<circuit name="multiplier">
+		<switch_bank id="multiplier:Switch_bank1" size="4" fatPin="true" number="0" label="M">
+			<coords x="20" y="20"/>
+			<parent-of pindex="0" cindex="0" mult="4">multiplier:4bitDRegister3</parent-of>
+		</switch_bank>
+		<switch_bank id="multiplier:Switch_bank6" size="4" fatPin="true" number="4" label="LO">
+			<coords x="20" y="170"/>
+			<parent-of pindex="0" cindex="4" mult="4">multiplier:4bit2to1mux6</parent-of>
+		</switch_bank>
+		<switch id="multiplier:Switch8" number="8" label="clear">
+			<coords x="20" y="340"/>
+			<parent-of pindex="0" cindex="0">multiplier:Connector8</parent-of>
+		</switch>
+		<card id="multiplier:4bitadder1" base="4bitadder">
+			<coords x="660" y="120"/>
+			<parent-of pindex="13" cindex="4">multiplier:Bundler1</parent-of>
+			<parent-of pindex="9" cindex="0" mult="4">multiplier:Bundler1</parent-of>
+		</card>
+		<card id="multiplier:4bit2to1mux2" base="4bit2to1mux">
+			<coords x="1190" y="200"/>
+			<parent-of pindex="9" cindex="16" mult="4">multiplier:Connector10</parent-of>
+		</card>
+		<card id="multiplier:4bitDRegister3" base="4bitDRegister">
+			<coords x="410" y="100"/>
+			<parent-of pindex="7" cindex="0" mult="4">multiplier:4bitadder1</parent-of>
+		</card>
+		<switch id="multiplier:Switch9" number="9" label="clock">
+			<coords x="20" y="400"/>
+			<parent-of pindex="0" cindex="0">multiplier:Connector7</parent-of>
+		</switch>
+		<switch id="multiplier:Switch10" number="10" label="init">
+			<coords x="20" y="450"/>
+			<parent-of pindex="0" cindex="0">multiplier:Connector6</parent-of>
+		</switch>
+		<connector id="multiplier:Connector1" mult="4">
+			<legs>
+				<leg idx="0" x="585" y="315"/>
+				<leg idx="1" x="585" y="295"/>
+				<leg idx="2" x="585" y="135"/>
+			</legs>
+			<parent-of pindex="0" cindex="0" mult="4">multiplier:Bundler2</parent-of>
+			<parent-of pindex="8" cindex="4" mult="4">multiplier:4bitadder1</parent-of>
+		</connector>
+		<bundler id="multiplier:Bundler1" width="5" in="4 1" out="1 4">
+			<coords x="820" y="120"/>
+			<parent-of pindex="6" cindex="4" mult="4">multiplier:4bit2to1mux2</parent-of>
+			<parent-of pindex="5" cindex="3">multiplier:Bundler6</parent-of>
+		</bundler>
+		<connector id="multiplier:Connector2" mult="4">
+			<legs>
+				<leg idx="0" x="1165" y="65"/>
+				<leg idx="1" x="1165" y="105"/>
+				<leg idx="2" x="1165" y="425"/>
+				<leg idx="3" x="165" y="425"/>
+				<leg idx="4" x="165" y="185"/>
+			</legs>
+			<parent-of pindex="16" cindex="0" mult="4">multiplier:4bit2to1mux6</parent-of>
+			<parent-of pindex="4" cindex="0" mult="4">multiplier:Bulb_bank60</parent-of>
+		</connector>
+		<bundler id="multiplier:Bundler2" width="5" in="4 1" out="1 4">
+			<coords x="870" y="310"/>
+			<parent-of pindex="6" cindex="0" mult="4">multiplier:4bit2to1mux2</parent-of>
+			<parent-of pindex="5" cindex="3">multiplier:Bundler8</parent-of>
+		</bundler>
+		<zero id="multiplier:Zero1">
+			<coords x="800" y="320"/>
+			<parent-of pindex="0" cindex="4">multiplier:Bundler2</parent-of>
+		</zero>
+		<bulb_bank id="multiplier:Bulb_bank60" size="4" fatPin="true" number="11" label="LO">
+			<coords x="1270" y="20"/>
+		</bulb_bank>
+		<bulb_bank id="multiplier:Bulb_bank65" size="4" fatPin="true" number="15" label="HI">
+			<coords x="1430" y="220"/>
+		</bulb_bank>
+		<zero id="multiplier:Zero2">
+			<coords x="600" y="140"/>
+			<parent-of pindex="0" cindex="8">multiplier:4bitadder1</parent-of>
+		</zero>
+		<card id="multiplier:4bitDRegister4" base="4bitDRegister">
+			<coords x="410" y="180"/>
+			<parent-of pindex="7" cindex="0" mult="4">multiplier:Bundler5</parent-of>
+		</card>
+		<card id="multiplier:4bitDRegister5" base="4bitDRegister">
+			<coords x="410" y="290"/>
+			<parent-of pindex="7" cindex="4" mult="4">multiplier:Connector1</parent-of>
+		</card>
+		<card id="multiplier:4bit2to1mux6" base="4bit2to1mux">
+			<coords x="190" y="180"/>
+			<parent-of pindex="9" cindex="0" mult="4">multiplier:4bitDRegister4</parent-of>
+		</card>
+		<zero id="multiplier:Zero3">
+			<coords x="90" y="300"/>
+			<parent-of pindex="0" cindex="0">multiplier:Bundler4</parent-of>
+		</zero>
+		<bundler id="multiplier:Bundler4" width="4" in="1" out="4" mode="BIT_MULTIPLIER">
+			<coords x="130" y="300"/>
+			<parent-of pindex="1" cindex="4" mult="4">multiplier:4bit2to1mux8</parent-of>
+		</bundler>
+		<card id="multiplier:4bit2to1mux8" base="4bit2to1mux">
+			<coords x="200" y="290"/>
+			<parent-of pindex="9" cindex="0" mult="4">multiplier:4bitDRegister5</parent-of>
+		</card>
+		<connector id="multiplier:Connector6">
+			<legs>
+				<leg idx="0" x="175" y="465"/>
+				<leg idx="1" x="175" y="315"/>
+				<leg idx="2" x="175" y="205"/>
+			</legs>
+			<parent-of pindex="2" cindex="8">multiplier:4bit2to1mux6</parent-of>
+			<parent-of pindex="1" cindex="8">multiplier:4bit2to1mux8</parent-of>
+		</connector>
+		<bundler id="multiplier:Bundler5" width="4" in="4" out="1 3">
+			<coords x="760" y="180"/>
+			<parent-of pindex="4" cindex="1">multiplier:Connector11</parent-of>
+			<parent-of pindex="5" cindex="3" mult="3">multiplier:Connector12</parent-of>
+		</bundler>
+		<connector id="multiplier:Connector7">
+			<legs>
+				<leg idx="0" x="355" y="415"/>
+				<leg idx="1" x="355" y="305"/>
+				<leg idx="2" x="355" y="195"/>
+				<leg idx="3" x="355" y="115"/>
+			</legs>
+			<parent-of pindex="2" cindex="4">multiplier:4bitDRegister4</parent-of>
+			<parent-of pindex="3" cindex="4">multiplier:4bitDRegister3</parent-of>
+			<parent-of pindex="1" cindex="4">multiplier:4bitDRegister5</parent-of>
+		</connector>
+		<connector id="multiplier:Connector8">
+			<legs>
+				<leg idx="0" x="365" y="355"/>
+				<leg idx="1" x="365" y="315"/>
+				<leg idx="2" x="365" y="205"/>
+				<leg idx="3" x="365" y="125"/>
+			</legs>
+			<parent-of pindex="1" cindex="5">multiplier:4bitDRegister5</parent-of>
+			<parent-of pindex="2" cindex="5">multiplier:4bitDRegister4</parent-of>
+			<parent-of pindex="3" cindex="5">multiplier:4bitDRegister3</parent-of>
+		</connector>
+		<one id="multiplier:One1">
+			<coords x="310" y="330"/>
+			<parent-of pindex="0" cindex="6">multiplier:4bitDRegister5</parent-of>
+		</one>
+		<one id="multiplier:One2">
+			<coords x="310" y="230"/>
+			<parent-of pindex="0" cindex="6">multiplier:4bitDRegister4</parent-of>
+		</one>
+		<one id="multiplier:One3">
+			<coords x="310" y="130"/>
+			<parent-of pindex="0" cindex="6">multiplier:4bitDRegister3</parent-of>
+		</one>
+		<bundler id="multiplier:Bundler6" width="4" in="3 1" out="4">
+			<coords x="930" y="40"/>
+			<parent-of pindex="4" cindex="4" mult="4">multiplier:4bit2to1mux10</parent-of>
+		</bundler>
+		<connector id="multiplier:Connector10" mult="4">
+			<legs>
+				<leg idx="0" x="185" y="295"/>
+				<leg idx="1" x="185" y="435"/>
+				<leg idx="2" x="1375" y="435"/>
+				<leg idx="3" x="1375" y="305"/>
+				<leg idx="4" x="1375" y="205"/>
+			</legs>
+			<parent-of pindex="12" cindex="0" mult="4">multiplier:Bulb_bank65</parent-of>
+			<parent-of pindex="0" cindex="0" mult="4">multiplier:4bit2to1mux8</parent-of>
+		</connector>
+		<card id="multiplier:4bit2to1mux10" base="4bit2to1mux">
+			<coords x="1000" y="60"/>
+			<parent-of pindex="9" cindex="0" mult="4">multiplier:Connector2</parent-of>
+		</card>
+		<connector id="multiplier:Connector11">
+			<legs>
+				<leg idx="0" x="895" y="85"/>
+				<leg idx="1" x="895" y="185"/>
+				<leg idx="2" x="895" y="225"/>
+			</legs>
+			<parent-of pindex="0" cindex="8">multiplier:4bit2to1mux10</parent-of>
+			<parent-of pindex="2" cindex="8">multiplier:4bit2to1mux2</parent-of>
+		</connector>
+		<connector id="multiplier:Connector12" mult="3">
+			<legs>
+				<leg idx="0" x="865" y="265"/>
+				<leg idx="1" x="865" y="195"/>
+				<leg idx="2" x="865" y="45"/>
+			</legs>
+			<parent-of pindex="6" cindex="0" mult="3">multiplier:Bundler6</parent-of>
+			<parent-of pindex="0" cindex="0" mult="3">multiplier:Bundler8</parent-of>
+		</connector>
+		<bundler id="multiplier:Bundler8" width="4" in="3 1" out="4">
+			<coords x="940" y="260"/>
+			<parent-of pindex="4" cindex="0" mult="4">multiplier:4bit2to1mux10</parent-of>
+		</bundler>
+	</circuit>
+	<circuit name="top-level">
+		<card id="top-level:multiplier1" base="multiplier">
+			<coords x="200" y="110"/>
+			<parent-of pindex="15" cindex="0" mult="4">top-level:Bulb_bank6</parent-of>
+			<parent-of pindex="11" cindex="0" mult="4">top-level:Bulb_bank1</parent-of>
+		</card>
+		<switch_bank id="top-level:Switch_bank1" size="4" fatPin="true" number="0" label="Multiplicand">
+			<coords x="10" y="50"/>
+			<parent-of pindex="0" cindex="0" mult="4">top-level:multiplier1</parent-of>
+		</switch_bank>
+		<switch_bank id="top-level:Switch_bank6" size="4" fatPin="true" number="4" label="Multiplier">
+			<coords x="20" y="210"/>
+			<parent-of pindex="0" cindex="4" mult="4">top-level:multiplier1</parent-of>
+		</switch_bank>
+		<switch id="top-level:Switch8" number="8" label="clear">
+			<coords x="60" y="350"/>
+			<parent-of pindex="0" cindex="8">top-level:multiplier1</parent-of>
+		</switch>
+		<switch id="top-level:Switch9" number="9" label="clock">
+			<coords x="80" y="390"/>
+			<parent-of pindex="0" cindex="9">top-level:multiplier1</parent-of>
+		</switch>
+		<switch id="top-level:Switch10" number="10" label="init">
+			<coords x="110" y="430"/>
+			<parent-of pindex="0" cindex="10">top-level:multiplier1</parent-of>
+		</switch>
+		<bulb_bank id="top-level:Bulb_bank1" size="4" fatPin="true" number="11" label="LO">
+			<coords x="490" y="40"/>
+		</bulb_bank>
+		<bulb_bank id="top-level:Bulb_bank6" size="4" fatPin="true" number="15" label="HI">
+			<coords x="470" y="210"/>
+		</bulb_bank>
 	</circuit>
 </project>
