@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+<!ELEMENT project (circuit+)>
+<!ATTLIST project
+	main-circuit CDATA #IMPLIED
+>
+<!ELEMENT circuit
+        (circuit*,
+	(and|andthree|or|orthree|xor|neg|nand|nor|switch|bulb|label|zero|one|jk|led|clock|nib|wire|plugin|card|chip|bus|bundler|switch_bank|bulb_bank|connector|abscircuit)*)>
+<!ATTLIST circuit
+        name CDATA #REQUIRED
+        freeze CDATA #IMPLIED
+        appsecure CDATA #IMPLIED
+        chipModel CDATA #IMPLIED>
+<!ELEMENT and (coords?, parent-of*, bundle*)*>
+<!ATTLIST and
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT andthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST andthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT or (coords?, parent-of*, bundle*)*>
+<!ATTLIST or
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT orthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST orthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT xor (coords?, parent-of*, bundle*)*>
+<!ATTLIST xor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT neg (coords?, parent-of*, bundle*)*>
+<!ATTLIST neg
+        id CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT nand (coords?, parent-of*, bundle*)*>
+<!ATTLIST nand
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT nor (coords?, parent-of*, bundle*)*>
+<!ATTLIST nor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT jk (coords?, parent-of*, bundle*)*>
+<!ATTLIST jk
+        id CDATA #REQUIRED
+        trigger CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT led (coords?, parent-of*, bundle*)*>
+<!ATTLIST led
+        id CDATA #REQUIRED
+        order CDATA "-1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT zero (coords?, parent-of*, bundle*)*>
+<!ATTLIST zero
+        id CDATA #REQUIRED>
+<!ELEMENT one (coords?, parent-of*, bundle*)*>
+<!ATTLIST one
+        id CDATA #REQUIRED>
+<!ELEMENT switch (coords?, parent-of*, bundle*)*>
+<!ATTLIST switch
+        id CDATA #REQUIRED
+        number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT bulb (coords?, parent-of*, bundle*)*>
+<!ATTLIST bulb
+    	id CDATA #REQUIRED
+    	number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT label (coords?, parent-of*, text)*>
+<!ATTLIST label
+        id CDATA #REQUIRED
+		size CDATA #REQUIRED
+		style CDATA #REQUIRED
+		color CDATA #REQUIRED>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT clock (coords?, parent-of*, bundle*)>
+<!ATTLIST clock
+        id CDATA #REQUIRED
+		speed CDATA #REQUIRED>
+<!ELEMENT nib (coords?, parent-of*, bundle*)*>
+<!ATTLIST nib
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT wire (coords?, parent-of*, bundle*)*>
+<!ATTLIST wire
+        id CDATA #REQUIRED
+		direction CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT abscircuit (coords?, parent-of*, bundle*)*>
+<!ATTLIST abscircuit
+        id CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT card (coords?, parent-of*, bundle*)*>
+<!ATTLIST card
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED>	
+<!ELEMENT chip (coords?, parent-of*, bundle*)*>
+<!ATTLIST chip
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        inDegree CDATA #REQUIRED
+        outDegree CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT plugin (properties*, coords?, parent-of*, bundle*)*>
+<!ATTLIST plugin
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED
+		mode CDATA "0"
+		data CDATA "0"
+		initString CDATA "">
+<!ELEMENT properties (entry*)>
+<!ELEMENT entry (#PCDATA)>
+<!ATTLIST entry
+		key CDATA #REQUIRED>
+<!ELEMENT bus (coords?, parent-of*, bundle*)*>
+<!ATTLIST bus
+        id CDATA #REQUIRED
+        width CDATA #REQUIRED
+        mode (ONE_TO_ONE|AND_IN|OR_IN) "ONE_TO_ONE"
+        in CDATA "1"
+        out CDATA "1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT bundler (coords?, parent-of*, bundle*)*>
+<!ATTLIST bundler
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        width CDATA #REQUIRED
+        in CDATA #REQUIRED
+        out CDATA #REQUIRED
+        name CDATA #IMPLIED
+        mode (BUNDLER|BIT_MULTIPLIER|BIT_COLLECTOR|NAMED_SOURCE|NAMED_SINK) "BUNDLER">
+<!ELEMENT switch_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST switch_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT bulb_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST bulb_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT connector (legs, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST connector
+		id CDATA #REQUIRED
+		mult CDATA #IMPLIED>
+<!ELEMENT legs (leg*)>
+<!ELEMENT leg EMPTY>
+<!ATTLIST leg
+		idx CDATA #REQUIRED
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT pinLabel EMPTY>
+<!ATTLIST pinLabel
+		id CDATA #REQUIRED
+		text CDATA #REQUIRED>
+<!ELEMENT coords EMPTY>
+<!ATTLIST coords
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT parent-of (#PCDATA)>
+<!ATTLIST parent-of
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED
+        mult CDATA "1">
+<!ELEMENT bundle (bundle_pair)*>
+<!ELEMENT bundle_pair (#PCDATA)>
+<!ATTLIST bundle_pair
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED>]>
+<project main-circuit="4-bit sequential multiplier">
+	<circuit name="4-bit sequential multiplier">
+		<switch_bank id="4-bit sequential multiplier:Switch_bank1" size="4" fatPin="false" number="0">
+			<coords x="20" y="20"/>
+		</switch_bank>
+		<switch_bank id="4-bit sequential multiplier:Switch_bank6" size="4" fatPin="false" number="4">
+			<coords x="20" y="170"/>
+		</switch_bank>
+		<switch id="4-bit sequential multiplier:Switch8" number="8" label="Clock">
+			<coords x="20" y="340"/>
+		</switch>
+	</circuit>
+</project>

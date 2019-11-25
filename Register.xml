@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+<!ELEMENT project (circuit+)>
+<!ATTLIST project
+	main-circuit CDATA #IMPLIED
+>
+<!ELEMENT circuit
+        (circuit*,
+	(and|andthree|or|orthree|xor|neg|nand|nor|switch|bulb|label|zero|one|jk|led|clock|nib|wire|plugin|card|chip|bus|bundler|switch_bank|bulb_bank|connector|abscircuit)*)>
+<!ATTLIST circuit
+        name CDATA #REQUIRED
+        freeze CDATA #IMPLIED
+        appsecure CDATA #IMPLIED
+        chipModel CDATA #IMPLIED>
+<!ELEMENT and (coords?, parent-of*, bundle*)*>
+<!ATTLIST and
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT andthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST andthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT or (coords?, parent-of*, bundle*)*>
+<!ATTLIST or
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT orthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST orthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT xor (coords?, parent-of*, bundle*)*>
+<!ATTLIST xor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT neg (coords?, parent-of*, bundle*)*>
+<!ATTLIST neg
+        id CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT nand (coords?, parent-of*, bundle*)*>
+<!ATTLIST nand
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT nor (coords?, parent-of*, bundle*)*>
+<!ATTLIST nor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT jk (coords?, parent-of*, bundle*)*>
+<!ATTLIST jk
+        id CDATA #REQUIRED
+        trigger CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT led (coords?, parent-of*, bundle*)*>
+<!ATTLIST led
+        id CDATA #REQUIRED
+        order CDATA "-1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT zero (coords?, parent-of*, bundle*)*>
+<!ATTLIST zero
+        id CDATA #REQUIRED>
+<!ELEMENT one (coords?, parent-of*, bundle*)*>
+<!ATTLIST one
+        id CDATA #REQUIRED>
+<!ELEMENT switch (coords?, parent-of*, bundle*)*>
+<!ATTLIST switch
+        id CDATA #REQUIRED
+        number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT bulb (coords?, parent-of*, bundle*)*>
+<!ATTLIST bulb
+    	id CDATA #REQUIRED
+    	number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT label (coords?, parent-of*, text)*>
+<!ATTLIST label
+        id CDATA #REQUIRED
+		size CDATA #REQUIRED
+		style CDATA #REQUIRED
+		color CDATA #REQUIRED>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT clock (coords?, parent-of*, bundle*)>
+<!ATTLIST clock
+        id CDATA #REQUIRED
+		speed CDATA #REQUIRED>
+<!ELEMENT nib (coords?, parent-of*, bundle*)*>
+<!ATTLIST nib
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT wire (coords?, parent-of*, bundle*)*>
+<!ATTLIST wire
+        id CDATA #REQUIRED
+		direction CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT abscircuit (coords?, parent-of*, bundle*)*>
+<!ATTLIST abscircuit
+        id CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT card (coords?, parent-of*, bundle*)*>
+<!ATTLIST card
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED>	
+<!ELEMENT chip (coords?, parent-of*, bundle*)*>
+<!ATTLIST chip
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        inDegree CDATA #REQUIRED
+        outDegree CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT plugin (properties*, coords?, parent-of*, bundle*)*>
+<!ATTLIST plugin
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED
+		mode CDATA "0"
+		data CDATA "0"
+		initString CDATA "">
+<!ELEMENT properties (entry*)>
+<!ELEMENT entry (#PCDATA)>
+<!ATTLIST entry
+		key CDATA #REQUIRED>
+<!ELEMENT bus (coords?, parent-of*, bundle*)*>
+<!ATTLIST bus
+        id CDATA #REQUIRED
+        width CDATA #REQUIRED
+        mode (ONE_TO_ONE|AND_IN|OR_IN) "ONE_TO_ONE"
+        in CDATA "1"
+        out CDATA "1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT bundler (coords?, parent-of*, bundle*)*>
+<!ATTLIST bundler
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        width CDATA #REQUIRED
+        in CDATA #REQUIRED
+        out CDATA #REQUIRED
+        name CDATA #IMPLIED
+        mode (BUNDLER|BIT_MULTIPLIER|BIT_COLLECTOR|NAMED_SOURCE|NAMED_SINK) "BUNDLER">
+<!ELEMENT switch_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST switch_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT bulb_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST bulb_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT connector (legs, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST connector
+		id CDATA #REQUIRED
+		mult CDATA #IMPLIED>
+<!ELEMENT legs (leg*)>
+<!ELEMENT leg EMPTY>
+<!ATTLIST leg
+		idx CDATA #REQUIRED
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT pinLabel EMPTY>
+<!ATTLIST pinLabel
+		id CDATA #REQUIRED
+		text CDATA #REQUIRED>
+<!ELEMENT coords EMPTY>
+<!ATTLIST coords
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT parent-of (#PCDATA)>
+<!ATTLIST parent-of
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED
+        mult CDATA "1">
+<!ELEMENT bundle (bundle_pair)*>
+<!ELEMENT bundle_pair (#PCDATA)>
+<!ATTLIST bundle_pair
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED>]>
+<project main-circuit="Register">
+	<circuit name="JKflipflop">
+		<switch id="JKflipflop:Switch0" number="0" label="J">
+			<coords x="90" y="70"/>
+			<parent-of pindex="0" cindex="1">JKflipflop:AndThree1</parent-of>
+		</switch>
+		<bulb id="JKflipflop:Bulb5" number="5" label="Q">
+			<coords x="710" y="170"/>
+		</bulb>
+		<nor id="JKflipflop:Nor1">
+			<coords x="542" y="80"/>
+			<parent-of pindex="2" cindex="0">JKflipflop:Connector1</parent-of>
+		</nor>
+		<nor id="JKflipflop:Nor2">
+			<coords x="541" y="170"/>
+			<parent-of pindex="2" cindex="0">JKflipflop:Connector3</parent-of>
+		</nor>
+		<connector id="JKflipflop:Connector1">
+			<legs>
+				<leg idx="0" x="585" y="95"/>
+				<leg idx="1" x="605" y="95"/>
+				<leg idx="2" x="635" y="95"/>
+				<leg idx="3" x="685" y="95"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">JKflipflop:Connector7</parent-of>
+			<parent-of pindex="3" cindex="0">JKflipflop:Bulb6</parent-of>
+		</connector>
+		<connector id="JKflipflop:Connector2">
+			<legs>
+				<leg idx="0" x="635" y="125"/>
+				<leg idx="1" x="495" y="155"/>
+			</legs>
+			<parent-of pindex="0" cindex="2">JKflipflop:Connector1</parent-of>
+			<parent-of pindex="1" cindex="0">JKflipflop:Nor2</parent-of>
+		</connector>
+		<connector id="JKflipflop:Connector3">
+			<legs>
+				<leg idx="0" x="585" y="185"/>
+				<leg idx="1" x="615" y="185"/>
+				<leg idx="2" x="635" y="185"/>
+				<leg idx="3" x="675" y="185"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">JKflipflop:Bulb5</parent-of>
+		</connector>
+		<connector id="JKflipflop:Connector4">
+			<legs>
+				<leg idx="0" x="635" y="155"/>
+				<leg idx="1" x="495" y="125"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">JKflipflop:Nor1</parent-of>
+			<parent-of pindex="0" cindex="2">JKflipflop:Connector3</parent-of>
+		</connector>
+		<switch id="JKflipflop:Switch1" number="1" label="clock">
+			<coords x="30" y="110"/>
+			<parent-of pindex="0" cindex="0">JKflipflop:Connector6</parent-of>
+		</switch>
+		<connector id="JKflipflop:Connector5">
+			<legs>
+				<leg idx="0" x="395" y="95"/>
+				<leg idx="1" x="395" y="135"/>
+				<leg idx="2" x="395" y="185"/>
+			</legs>
+			<parent-of pindex="0" cindex="2">JKflipflop:AndThree1</parent-of>
+			<parent-of pindex="2" cindex="0">JKflipflop:AndThree2</parent-of>
+		</connector>
+		<neg id="JKflipflop:Neg1">
+			<coords x="130" y="110"/>
+			<parent-of pindex="1" cindex="0">JKflipflop:Neg2</parent-of>
+		</neg>
+		<connector id="JKflipflop:Connector6">
+			<legs>
+				<leg idx="0" x="85" y="125"/>
+				<leg idx="1" x="95" y="125"/>
+				<leg idx="2" x="95" y="145"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">JKflipflop:Neg1</parent-of>
+			<parent-of pindex="2" cindex="1">JKflipflop:And3</parent-of>
+		</connector>
+		<and id="JKflipflop:And3">
+			<coords x="295" y="121"/>
+			<parent-of pindex="2" cindex="1">JKflipflop:Connector5</parent-of>
+		</and>
+		<neg id="JKflipflop:Neg2">
+			<coords x="180" y="110"/>
+			<parent-of pindex="1" cindex="0">JKflipflop:Neg3</parent-of>
+		</neg>
+		<neg id="JKflipflop:Neg3">
+			<coords x="240" y="110"/>
+			<parent-of pindex="1" cindex="0">JKflipflop:And3</parent-of>
+		</neg>
+		<switch id="JKflipflop:Switch2" number="2" label="K">
+			<coords x="90" y="180"/>
+			<parent-of pindex="0" cindex="1">JKflipflop:AndThree2</parent-of>
+		</switch>
+		<andthree id="JKflipflop:AndThree1">
+			<coords x="420" y="70"/>
+			<parent-of pindex="3" cindex="1">JKflipflop:Or1</parent-of>
+		</andthree>
+		<connector id="JKflipflop:Connector7">
+			<legs>
+				<leg idx="0" x="395" y="25"/>
+				<leg idx="1" x="605" y="25"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">JKflipflop:AndThree1</parent-of>
+		</connector>
+		<andthree id="JKflipflop:AndThree2">
+			<coords x="420" y="180"/>
+			<parent-of pindex="3" cindex="0">JKflipflop:Or2</parent-of>
+		</andthree>
+		<connector id="JKflipflop:Connector8">
+			<legs>
+				<leg idx="0" x="395" y="255"/>
+				<leg idx="1" x="615" y="255"/>
+			</legs>
+			<parent-of pindex="0" cindex="2">JKflipflop:AndThree2</parent-of>
+			<parent-of pindex="1" cindex="1">JKflipflop:Connector3</parent-of>
+		</connector>
+		<switch id="JKflipflop:Switch3" number="3" label="Preset">
+			<coords x="160" y="30"/>
+			<parent-of pindex="0" cindex="0">JKflipflop:Or1</parent-of>
+		</switch>
+		<or id="JKflipflop:Or1">
+			<coords x="470" y="40"/>
+			<parent-of pindex="2" cindex="0">JKflipflop:Nor1</parent-of>
+		</or>
+		<switch id="JKflipflop:Switch4" number="4" label="Clear">
+			<coords x="160" y="220"/>
+			<parent-of pindex="0" cindex="1">JKflipflop:Or2</parent-of>
+		</switch>
+		<or id="JKflipflop:Or2">
+			<coords x="480" y="210"/>
+			<parent-of pindex="2" cindex="1">JKflipflop:Nor2</parent-of>
+		</or>
+		<bulb id="JKflipflop:Bulb6" number="6" label="Q&apos;">
+			<coords x="710" y="80"/>
+		</bulb>
+	</circuit>
+	<circuit name="Dflipflop">
+		<switch id="Dflipflop:Switch0" number="0" label="D">
+			<coords x="30" y="40"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Connector7</parent-of>
+		</switch>
+		<bulb id="Dflipflop:Bulb4" number="4" label="Q&apos;">
+			<coords x="650" y="50"/>
+		</bulb>
+		<bulb id="Dflipflop:Bulb5" number="5" label="Q">
+			<coords x="658" y="160"/>
+		</bulb>
+		<nor id="Dflipflop:Nor1">
+			<coords x="488" y="50"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Connector1</parent-of>
+		</nor>
+		<nor id="Dflipflop:Nor2">
+			<coords x="488" y="160"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Connector3</parent-of>
+		</nor>
+		<connector id="Dflipflop:Connector1">
+			<legs>
+				<leg idx="0" x="545" y="65"/>
+				<leg idx="1" x="585" y="65"/>
+				<leg idx="2" x="625" y="65"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Bulb4</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector2">
+			<legs>
+				<leg idx="0" x="585" y="85"/>
+				<leg idx="1" x="465" y="145"/>
+			</legs>
+			<parent-of pindex="0" cindex="1">Dflipflop:Connector1</parent-of>
+			<parent-of pindex="1" cindex="0">Dflipflop:Nor2</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector3">
+			<legs>
+				<leg idx="0" x="545" y="175"/>
+				<leg idx="1" x="585" y="175"/>
+				<leg idx="2" x="625" y="175"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Bulb5</parent-of>
+		</connector>
+		<connector id="Dflipflop:Connector4">
+			<legs>
+				<leg idx="0" x="585" y="155"/>
+				<leg idx="1" x="465" y="95"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">Dflipflop:Nor1</parent-of>
+			<parent-of pindex="0" cindex="1">Dflipflop:Connector3</parent-of>
+		</connector>
+		<switch id="Dflipflop:Switch1" number="1" label="clock">
+			<coords x="10" y="90"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Connector6</parent-of>
+		</switch>
+		<and id="Dflipflop:And1">
+			<coords x="360" y="50"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Or1</parent-of>
+		</and>
+		<and id="Dflipflop:And2">
+			<coords x="360" y="160"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Or2</parent-of>
+		</and>
+		<connector id="Dflipflop:Connector5">
+			<legs>
+				<leg idx="0" x="295" y="75"/>
+				<leg idx="1" x="295" y="115"/>
+				<leg idx="2" x="295" y="165"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:And2</parent-of>
+			<parent-of pindex="0" cindex="1">Dflipflop:And1</parent-of>
+		</connector>
+		<neg id="Dflipflop:Neg1">
+			<coords x="80" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg3</parent-of>
+		</neg>
+		<connector id="Dflipflop:Connector6">
+			<legs>
+				<leg idx="0" x="65" y="105"/>
+				<leg idx="0" x="65" y="105"/>
+				<leg idx="2" x="65" y="125"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg1</parent-of>
+			<parent-of pindex="2" cindex="1">Dflipflop:And3</parent-of>
+		</connector>
+		<and id="Dflipflop:And3">
+			<coords x="220" y="100"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Connector5</parent-of>
+		</and>
+		<connector id="Dflipflop:Connector7">
+			<legs>
+				<leg idx="0" x="95" y="55"/>
+				<leg idx="1" x="275" y="55"/>
+				<leg idx="2" x="275" y="185"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">Dflipflop:Neg2</parent-of>
+			<parent-of pindex="1" cindex="0">Dflipflop:And1</parent-of>
+		</connector>
+		<neg id="Dflipflop:Neg2">
+			<coords x="300" y="170"/>
+			<parent-of pindex="1" cindex="1">Dflipflop:And2</parent-of>
+		</neg>
+		<neg id="Dflipflop:Neg3">
+			<coords x="120" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:Neg4</parent-of>
+		</neg>
+		<neg id="Dflipflop:Neg4">
+			<coords x="170" y="90"/>
+			<parent-of pindex="1" cindex="0">Dflipflop:And3</parent-of>
+		</neg>
+		<switch id="Dflipflop:Switch2" number="2" label="clear">
+			<coords x="80" y="180"/>
+			<parent-of pindex="0" cindex="1">Dflipflop:Or2</parent-of>
+		</switch>
+		<switch id="Dflipflop:Switch3" number="3" label="preset">
+			<coords x="80" y="220"/>
+			<parent-of pindex="0" cindex="0">Dflipflop:Or1</parent-of>
+		</switch>
+		<or id="Dflipflop:Or1">
+			<coords x="410" y="40"/>
+			<parent-of pindex="2" cindex="0">Dflipflop:Nor1</parent-of>
+		</or>
+		<or id="Dflipflop:Or2">
+			<coords x="410" y="170"/>
+			<parent-of pindex="2" cindex="1">Dflipflop:Nor2</parent-of>
+		</or>
+	</circuit>
+	<circuit name="Register">
+	</circuit>
+	<circuit name="4bitDRegister">
+		<card id="4bitDRegister:Dflipflop1" base="Dflipflop">
+			<coords x="460" y="40"/>
+			<parent-of pindex="5" cindex="1">4bitDRegister:Connector9</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop2" base="Dflipflop">
+			<coords x="460" y="160"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector8</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop3" base="Dflipflop">
+			<coords x="460" y="290"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector7</parent-of>
+		</card>
+		<card id="4bitDRegister:Dflipflop4" base="Dflipflop">
+			<coords x="463" y="403"/>
+			<parent-of pindex="5" cindex="0">4bitDRegister:Connector6</parent-of>
+		</card>
+		<switch_bank id="4bitDRegister:Switch_bank1" size="4" fatPin="true" number="0" label="DataIn">
+			<coords x="30" y="260"/>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector10</parent-of>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector11</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Connector12</parent-of>
+			<parent-of pindex="3" cindex="0">4bitDRegister:Connector13</parent-of>
+		</switch_bank>
+		<bulb_bank id="4bitDRegister:Bulb_bank1" size="4" fatPin="true" number="7" label="DataOut">
+			<coords x="713" y="103"/>
+		</bulb_bank>
+		<switch id="4bitDRegister:Switch4" number="4" label="Clock">
+			<coords x="50" y="480"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector1</parent-of>
+		</switch>
+		<switch id="4bitDRegister:Switch5" number="5" label="Clear">
+			<coords x="50" y="520"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector2</parent-of>
+		</switch>
+		<connector id="4bitDRegister:Connector1">
+			<legs>
+				<leg idx="0" x="115" y="495"/>
+				<leg idx="1" x="425" y="495"/>
+				<leg idx="2" x="425" y="415"/>
+				<leg idx="3" x="425" y="305"/>
+				<leg idx="4" x="425" y="175"/>
+				<leg idx="5" x="425" y="55"/>
+			</legs>
+			<parent-of pindex="5" cindex="1">4bitDRegister:Dflipflop1</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:Dflipflop2</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:Dflipflop3</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Dflipflop4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector2">
+			<legs>
+				<leg idx="0" x="445" y="535"/>
+				<leg idx="1" x="445" y="425"/>
+				<leg idx="2" x="445" y="315"/>
+				<leg idx="3" x="445" y="185"/>
+				<leg idx="4" x="445" y="65"/>
+			</legs>
+			<parent-of pindex="4" cindex="2">4bitDRegister:Dflipflop1</parent-of>
+			<parent-of pindex="3" cindex="2">4bitDRegister:Dflipflop2</parent-of>
+			<parent-of pindex="2" cindex="2">4bitDRegister:Dflipflop3</parent-of>
+			<parent-of pindex="1" cindex="2">4bitDRegister:Dflipflop4</parent-of>
+		</connector>
+		<switch id="4bitDRegister:Switch6" number="6" label="Load">
+			<coords x="50" y="570"/>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Connector3</parent-of>
+		</switch>
+		<neg id="4bitDRegister:Neg1">
+			<coords x="180" y="570"/>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector5</parent-of>
+		</neg>
+		<connector id="4bitDRegister:Connector3">
+			<legs>
+				<leg idx="0" x="115" y="585"/>
+				<leg idx="1" x="145" y="585"/>
+				<leg idx="2" x="165" y="585"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Neg1</parent-of>
+			<parent-of pindex="1" cindex="0">4bitDRegister:Connector4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector4">
+			<legs>
+				<leg idx="0" x="145" y="585"/>
+				<leg idx="1" x="145" y="455"/>
+				<leg idx="2" x="145" y="325"/>
+				<leg idx="3" x="145" y="195"/>
+				<leg idx="4" x="145" y="85"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">4bitDRegister:And2</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:And4</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:And8</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:And6</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector5">
+			<legs>
+				<leg idx="0" x="245" y="585"/>
+				<leg idx="1" x="245" y="375"/>
+				<leg idx="2" x="245" y="285"/>
+				<leg idx="3" x="245" y="155"/>
+				<leg idx="4" x="245" y="45"/>
+			</legs>
+			<parent-of pindex="1" cindex="1">4bitDRegister:And1</parent-of>
+			<parent-of pindex="2" cindex="1">4bitDRegister:And3</parent-of>
+			<parent-of pindex="3" cindex="1">4bitDRegister:And7</parent-of>
+			<parent-of pindex="4" cindex="1">4bitDRegister:And5</parent-of>
+		</connector>
+		<or id="4bitDRegister:Or1">
+			<coords x="373" y="393"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop4</parent-of>
+		</or>
+		<and id="4bitDRegister:And1">
+			<coords x="303" y="383"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or1</parent-of>
+		</and>
+		<and id="4bitDRegister:And2">
+			<coords x="303" y="433"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or1</parent-of>
+		</and>
+		<connector id="4bitDRegister:Connector6">
+			<legs>
+				<leg idx="0" x="645" y="415"/>
+				<leg idx="1" x="645" y="355"/>
+				<leg idx="2" x="285" y="355"/>
+			</legs>
+			<parent-of pindex="1" cindex="3">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:And1</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector7">
+			<legs>
+				<leg idx="0" x="615" y="285"/>
+				<leg idx="1" x="615" y="245"/>
+				<leg idx="2" x="285" y="245"/>
+			</legs>
+			<parent-of pindex="1" cindex="2">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="2" cindex="0">4bitDRegister:And3</parent-of>
+		</connector>
+		<or id="4bitDRegister:Or2">
+			<coords x="370" y="280"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop3</parent-of>
+		</or>
+		<and id="4bitDRegister:And3">
+			<coords x="303" y="263"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or2</parent-of>
+		</and>
+		<and id="4bitDRegister:And4">
+			<coords x="303" y="303"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or2</parent-of>
+		</and>
+		<or id="4bitDRegister:Or3">
+			<coords x="360" y="30"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop1</parent-of>
+		</or>
+		<and id="4bitDRegister:And5">
+			<coords x="300" y="20"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or3</parent-of>
+		</and>
+		<and id="4bitDRegister:And6">
+			<coords x="300" y="60"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or3</parent-of>
+		</and>
+		<or id="4bitDRegister:Or4">
+			<coords x="363" y="153"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Dflipflop2</parent-of>
+		</or>
+		<and id="4bitDRegister:And7">
+			<coords x="303" y="133"/>
+			<parent-of pindex="2" cindex="0">4bitDRegister:Or4</parent-of>
+		</and>
+		<and id="4bitDRegister:And8">
+			<coords x="303" y="173"/>
+			<parent-of pindex="2" cindex="1">4bitDRegister:Or4</parent-of>
+		</and>
+		<connector id="4bitDRegister:Connector8">
+			<legs>
+				<leg idx="0" x="595" y="175"/>
+				<leg idx="1" x="615" y="175"/>
+				<leg idx="2" x="615" y="115"/>
+				<leg idx="3" x="285" y="115"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">4bitDRegister:And7</parent-of>
+			<parent-of pindex="1" cindex="1">4bitDRegister:Bulb_bank1</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector9">
+			<legs>
+				<leg idx="0" x="625" y="155"/>
+				<leg idx="1" x="625" y="55"/>
+				<leg idx="2" x="625" y="5"/>
+				<leg idx="3" x="285" y="5"/>
+				<leg idx="4" x="285" y="25"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitDRegister:Bulb_bank1</parent-of>
+			<parent-of pindex="4" cindex="0">4bitDRegister:And5</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector10">
+			<legs>
+				<leg idx="0" x="165" y="335"/>
+				<leg idx="1" x="165" y="175"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And8</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector11">
+			<legs>
+				<leg idx="0" x="155" y="315"/>
+				<leg idx="1" x="155" y="65"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And6</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector12">
+			<legs>
+				<leg idx="0" x="175" y="355"/>
+				<leg idx="1" x="175" y="305"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And4</parent-of>
+		</connector>
+		<connector id="4bitDRegister:Connector13">
+			<legs>
+				<leg idx="0" x="165" y="385"/>
+				<leg idx="1" x="165" y="435"/>
+			</legs>
+			<parent-of pindex="1" cindex="0">4bitDRegister:And2</parent-of>
+		</connector>
+		<label id="4bitDRegister:Label1" size="13" style="0" color="0">
+			<coords x="690" y="330"/>
+			<text>For each bit of the register,</text>
+		</label>
+		<label id="4bitDRegister:Label2" size="13" style="0" color="0">
+			<coords x="690" y="360"/>
+			<text>D =(Q)(not Load) + (Din)(Load)</text>
+		</label>
+	</circuit>
+	<circuit name="4bitJKRegister">
+		<card id="4bitJKRegister:JKflipflop1" base="JKflipflop">
+			<coords x="420" y="90"/>
+			<parent-of pindex="5" cindex="0">4bitJKRegister:Bulb_bank1</parent-of>
+		</card>
+		<card id="4bitJKRegister:JKflipflop2" base="JKflipflop">
+			<coords x="420" y="160"/>
+			<parent-of pindex="5" cindex="1">4bitJKRegister:Bulb_bank1</parent-of>
+		</card>
+		<card id="4bitJKRegister:JKflipflop3" base="JKflipflop">
+			<coords x="420" y="250"/>
+			<parent-of pindex="5" cindex="2">4bitJKRegister:Bulb_bank1</parent-of>
+		</card>
+		<card id="4bitJKRegister:JKflipflop4" base="JKflipflop">
+			<coords x="440" y="340"/>
+			<parent-of pindex="5" cindex="3">4bitJKRegister:Bulb_bank1</parent-of>
+		</card>
+		<switch_bank id="4bitJKRegister:Switch_bank1" size="4" fatPin="true" number="0" label="DataIn">
+			<coords x="50" y="30"/>
+			<parent-of pindex="0" cindex="0">4bitJKRegister:Connector2</parent-of>
+			<parent-of pindex="3" cindex="0">4bitJKRegister:Connector5</parent-of>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:Connector4</parent-of>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:Connector3</parent-of>
+		</switch_bank>
+		<switch id="4bitJKRegister:Switch4" number="4" label="Clock">
+			<coords x="40" y="450"/>
+			<parent-of pindex="0" cindex="0">4bitJKRegister:Connector1</parent-of>
+		</switch>
+		<switch id="4bitJKRegister:Switch5" number="5" label="Clear">
+			<coords x="40" y="490"/>
+			<parent-of pindex="0" cindex="0">4bitJKRegister:Connector7</parent-of>
+		</switch>
+		<switch id="4bitJKRegister:Switch6" number="6" label="Load">
+			<coords x="40" y="530"/>
+			<parent-of pindex="0" cindex="0">4bitJKRegister:Connector6</parent-of>
+		</switch>
+		<bulb_bank id="4bitJKRegister:Bulb_bank1" size="4" fatPin="true" number="7" label="DataOut">
+			<coords x="650" y="100"/>
+		</bulb_bank>
+		<connector id="4bitJKRegister:Connector1">
+			<legs>
+				<leg idx="0" x="105" y="465"/>
+				<leg idx="1" x="375" y="465"/>
+				<leg idx="2" x="375" y="355"/>
+				<leg idx="3" x="375" y="265"/>
+				<leg idx="4" x="375" y="175"/>
+				<leg idx="5" x="375" y="105"/>
+			</legs>
+			<parent-of pindex="5" cindex="1">4bitJKRegister:JKflipflop1</parent-of>
+			<parent-of pindex="4" cindex="1">4bitJKRegister:JKflipflop2</parent-of>
+			<parent-of pindex="3" cindex="1">4bitJKRegister:JKflipflop3</parent-of>
+			<parent-of pindex="2" cindex="1">4bitJKRegister:JKflipflop4</parent-of>
+		</connector>
+		<connector id="4bitJKRegister:Connector2">
+			<legs>
+				<leg idx="0" x="125" y="85"/>
+				<leg idx="1" x="195" y="85"/>
+				<leg idx="2" x="195" y="115"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:Neg1</parent-of>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:And1</parent-of>
+		</connector>
+		<neg id="4bitJKRegister:Neg1">
+			<coords x="210" y="100"/>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:And2</parent-of>
+		</neg>
+		<connector id="4bitJKRegister:Connector3">
+			<legs>
+				<leg idx="0" x="125" y="105"/>
+				<leg idx="1" x="185" y="105"/>
+				<leg idx="2" x="185" y="155"/>
+				<leg idx="3" x="185" y="185"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">4bitJKRegister:Neg2</parent-of>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:And3</parent-of>
+		</connector>
+		<neg id="4bitJKRegister:Neg2">
+			<coords x="210" y="170"/>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:And4</parent-of>
+		</neg>
+		<connector id="4bitJKRegister:Connector4">
+			<legs>
+				<leg idx="0" x="125" y="125"/>
+				<leg idx="1" x="175" y="125"/>
+				<leg idx="2" x="175" y="245"/>
+				<leg idx="3" x="175" y="275"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">4bitJKRegister:Neg3</parent-of>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:And5</parent-of>
+		</connector>
+		<neg id="4bitJKRegister:Neg3">
+			<coords x="210" y="260"/>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:And6</parent-of>
+		</neg>
+		<connector id="4bitJKRegister:Connector5">
+			<legs>
+				<leg idx="0" x="125" y="145"/>
+				<leg idx="1" x="145" y="145"/>
+				<leg idx="2" x="145" y="335"/>
+				<leg idx="3" x="145" y="365"/>
+			</legs>
+			<parent-of pindex="3" cindex="0">4bitJKRegister:Neg4</parent-of>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:And7</parent-of>
+		</connector>
+		<neg id="4bitJKRegister:Neg4">
+			<coords x="210" y="350"/>
+			<parent-of pindex="1" cindex="0">4bitJKRegister:And8</parent-of>
+		</neg>
+		<connector id="4bitJKRegister:Connector6">
+			<legs>
+				<leg idx="0" x="105" y="545"/>
+				<leg idx="1" x="295" y="545"/>
+				<leg idx="2" x="295" y="385"/>
+				<leg idx="3" x="295" y="355"/>
+				<leg idx="4" x="295" y="295"/>
+				<leg idx="5" x="295" y="265"/>
+				<leg idx="6" x="295" y="205"/>
+				<leg idx="7" x="295" y="175"/>
+				<leg idx="8" x="295" y="145"/>
+				<leg idx="9" x="295" y="105"/>
+			</legs>
+			<parent-of pindex="9" cindex="1">4bitJKRegister:And1</parent-of>
+			<parent-of pindex="8" cindex="1">4bitJKRegister:And2</parent-of>
+			<parent-of pindex="6" cindex="1">4bitJKRegister:And4</parent-of>
+			<parent-of pindex="7" cindex="1">4bitJKRegister:And3</parent-of>
+			<parent-of pindex="4" cindex="1">4bitJKRegister:And6</parent-of>
+			<parent-of pindex="5" cindex="1">4bitJKRegister:And5</parent-of>
+			<parent-of pindex="2" cindex="1">4bitJKRegister:And8</parent-of>
+			<parent-of pindex="3" cindex="1">4bitJKRegister:And7</parent-of>
+		</connector>
+		<and id="4bitJKRegister:And1">
+			<coords x="320" y="80"/>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:JKflipflop1</parent-of>
+		</and>
+		<and id="4bitJKRegister:And2">
+			<coords x="320" y="110"/>
+			<parent-of pindex="2" cindex="2">4bitJKRegister:JKflipflop1</parent-of>
+		</and>
+		<and id="4bitJKRegister:And3">
+			<coords x="320" y="150"/>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:JKflipflop2</parent-of>
+		</and>
+		<and id="4bitJKRegister:And4">
+			<coords x="320" y="180"/>
+			<parent-of pindex="2" cindex="2">4bitJKRegister:JKflipflop2</parent-of>
+		</and>
+		<and id="4bitJKRegister:And5">
+			<coords x="320" y="240"/>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:JKflipflop3</parent-of>
+		</and>
+		<and id="4bitJKRegister:And6">
+			<coords x="320" y="270"/>
+			<parent-of pindex="2" cindex="2">4bitJKRegister:JKflipflop3</parent-of>
+		</and>
+		<and id="4bitJKRegister:And7">
+			<coords x="320" y="330"/>
+			<parent-of pindex="2" cindex="0">4bitJKRegister:JKflipflop4</parent-of>
+		</and>
+		<and id="4bitJKRegister:And8">
+			<coords x="320" y="360"/>
+			<parent-of pindex="2" cindex="2">4bitJKRegister:JKflipflop4</parent-of>
+		</and>
+		<connector id="4bitJKRegister:Connector7">
+			<legs>
+				<leg idx="0" x="105" y="505"/>
+				<leg idx="1" x="405" y="505"/>
+				<leg idx="2" x="405" y="385"/>
+				<leg idx="3" x="405" y="295"/>
+				<leg idx="4" x="405" y="205"/>
+				<leg idx="5" x="405" y="135"/>
+			</legs>
+			<parent-of pindex="5" cindex="4">4bitJKRegister:JKflipflop1</parent-of>
+			<parent-of pindex="4" cindex="4">4bitJKRegister:JKflipflop2</parent-of>
+			<parent-of pindex="3" cindex="4">4bitJKRegister:JKflipflop3</parent-of>
+			<parent-of pindex="2" cindex="4">4bitJKRegister:JKflipflop4</parent-of>
+		</connector>
+		<label id="4bitJKRegister:Label1" size="13" style="0" color="0">
+			<coords x="690" y="300"/>
+			<text>J = (Din)(Load)</text>
+		</label>
+		<label id="4bitJKRegister:Label2" size="13" style="0" color="0">
+			<coords x="690" y="320"/>
+			<text>K = (Din)(not Load)</text>
+		</label>
+		<label id="4bitJKRegister:Label3" size="13" style="0" color="0">
+			<coords x="660" y="280"/>
+			<text>For each bit of the register,</text>
+		</label>
+	</circuit>
+</project>

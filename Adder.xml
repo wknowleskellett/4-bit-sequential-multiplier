@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+<!ELEMENT project (circuit+)>
+<!ATTLIST project
+	main-circuit CDATA #IMPLIED
+>
+<!ELEMENT circuit
+        (circuit*,
+	(and|andthree|or|orthree|xor|neg|nand|nor|switch|bulb|label|zero|one|jk|led|clock|nib|wire|plugin|card|chip|bus|bundler|switch_bank|bulb_bank|connector|abscircuit)*)>
+<!ATTLIST circuit
+        name CDATA #REQUIRED
+        freeze CDATA #IMPLIED
+        appsecure CDATA #IMPLIED
+        chipModel CDATA #IMPLIED>
+<!ELEMENT and (coords?, parent-of*, bundle*)*>
+<!ATTLIST and
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT andthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST andthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT or (coords?, parent-of*, bundle*)*>
+<!ATTLIST or
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT orthree (coords?, parent-of*, bundle*)*>
+<!ATTLIST orthree
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT xor (coords?, parent-of*, bundle*)*>
+<!ATTLIST xor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT neg (coords?, parent-of*, bundle*)*>
+<!ATTLIST neg
+        id CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT nand (coords?, parent-of*, bundle*)*>
+<!ATTLIST nand
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT nor (coords?, parent-of*, bundle*)*>
+<!ATTLIST nor
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>
+<!ELEMENT jk (coords?, parent-of*, bundle*)*>
+<!ATTLIST jk
+        id CDATA #REQUIRED
+        trigger CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT led (coords?, parent-of*, bundle*)*>
+<!ATTLIST led
+        id CDATA #REQUIRED
+        order CDATA "-1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT zero (coords?, parent-of*, bundle*)*>
+<!ATTLIST zero
+        id CDATA #REQUIRED>
+<!ELEMENT one (coords?, parent-of*, bundle*)*>
+<!ATTLIST one
+        id CDATA #REQUIRED>
+<!ELEMENT switch (coords?, parent-of*, bundle*)*>
+<!ATTLIST switch
+        id CDATA #REQUIRED
+        number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT bulb (coords?, parent-of*, bundle*)*>
+<!ATTLIST bulb
+    	id CDATA #REQUIRED
+    	number CDATA #REQUIRED
+		label CDATA #IMPLIED>
+<!ELEMENT label (coords?, parent-of*, text)*>
+<!ATTLIST label
+        id CDATA #REQUIRED
+		size CDATA #REQUIRED
+		style CDATA #REQUIRED
+		color CDATA #REQUIRED>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT clock (coords?, parent-of*, bundle*)>
+<!ATTLIST clock
+        id CDATA #REQUIRED
+		speed CDATA #REQUIRED>
+<!ELEMENT nib (coords?, parent-of*, bundle*)*>
+<!ATTLIST nib
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        mult CDATA #IMPLIED>        
+<!ELEMENT wire (coords?, parent-of*, bundle*)*>
+<!ATTLIST wire
+        id CDATA #REQUIRED
+		direction CDATA #REQUIRED
+        mult CDATA #IMPLIED>
+<!ELEMENT abscircuit (coords?, parent-of*, bundle*)*>
+<!ATTLIST abscircuit
+        id CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT card (coords?, parent-of*, bundle*)*>
+<!ATTLIST card
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED>	
+<!ELEMENT chip (coords?, parent-of*, bundle*)*>
+<!ATTLIST chip
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        inDegree CDATA #REQUIRED
+        outDegree CDATA #REQUIRED
+		base CDATA #REQUIRED>
+<!ELEMENT plugin (properties*, coords?, parent-of*, bundle*)*>
+<!ATTLIST plugin
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+		base CDATA #REQUIRED
+		mode CDATA "0"
+		data CDATA "0"
+		initString CDATA "">
+<!ELEMENT properties (entry*)>
+<!ELEMENT entry (#PCDATA)>
+<!ATTLIST entry
+		key CDATA #REQUIRED>
+<!ELEMENT bus (coords?, parent-of*, bundle*)*>
+<!ATTLIST bus
+        id CDATA #REQUIRED
+        width CDATA #REQUIRED
+        mode (ONE_TO_ONE|AND_IN|OR_IN) "ONE_TO_ONE"
+        in CDATA "1"
+        out CDATA "1"
+        mult CDATA #IMPLIED>        
+<!ELEMENT bundler (coords?, parent-of*, bundle*)*>
+<!ATTLIST bundler
+        id CDATA #REQUIRED
+        triggerpair CDATA #IMPLIED
+        width CDATA #REQUIRED
+        in CDATA #REQUIRED
+        out CDATA #REQUIRED
+        name CDATA #IMPLIED
+        mode (BUNDLER|BIT_MULTIPLIER|BIT_COLLECTOR|NAMED_SOURCE|NAMED_SINK) "BUNDLER">
+<!ELEMENT switch_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST switch_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT bulb_bank  (coords?, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST bulb_bank
+		id CDATA #REQUIRED
+		number CDATA "0"
+		fatPin (true|false) "false"
+		label CDATA #IMPLIED
+		size CDATA #REQUIRED>
+<!ELEMENT connector (legs, parent-of*, bundle*, pinLabel*)*>
+<!ATTLIST connector
+		id CDATA #REQUIRED
+		mult CDATA #IMPLIED>
+<!ELEMENT legs (leg*)>
+<!ELEMENT leg EMPTY>
+<!ATTLIST leg
+		idx CDATA #REQUIRED
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT pinLabel EMPTY>
+<!ATTLIST pinLabel
+		id CDATA #REQUIRED
+		text CDATA #REQUIRED>
+<!ELEMENT coords EMPTY>
+<!ATTLIST coords
+		x CDATA #REQUIRED
+		y CDATA #REQUIRED>
+<!ELEMENT parent-of (#PCDATA)>
+<!ATTLIST parent-of
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED
+        mult CDATA "1">
+<!ELEMENT bundle (bundle_pair)*>
+<!ELEMENT bundle_pair (#PCDATA)>
+<!ATTLIST bundle_pair
+        pindex CDATA #REQUIRED
+        cindex CDATA #REQUIRED>]>
+<project main-circuit="Adder">
+	<circuit name="Adder">
+	</circuit>
+	<circuit name="halfadder">
+		<switch id="halfadder:Switch0" number="0" label="A">
+			<coords x="180" y="70"/>
+			<parent-of pindex="0" cindex="0">halfadder:Connector1</parent-of>
+		</switch>
+		<switch id="halfadder:Switch1" number="1" label="B">
+			<coords x="180" y="170"/>
+			<parent-of pindex="0" cindex="0">halfadder:Connector2</parent-of>
+		</switch>
+		<bulb id="halfadder:Bulb2" number="2" label="C">
+			<coords x="380" y="80"/>
+		</bulb>
+		<bulb id="halfadder:Bulb3" number="3" label="S">
+			<coords x="380" y="160"/>
+		</bulb>
+		<and id="halfadder:And1">
+			<coords x="290" y="80"/>
+			<parent-of pindex="2" cindex="0">halfadder:Bulb2</parent-of>
+		</and>
+		<xor id="halfadder:Xor1">
+			<coords x="290" y="160"/>
+			<parent-of pindex="2" cindex="0">halfadder:Bulb3</parent-of>
+		</xor>
+		<connector id="halfadder:Connector1">
+			<legs>
+				<leg idx="0" x="235" y="85"/>
+				<leg idx="1" x="255" y="85"/>
+				<leg idx="2" x="275" y="85"/>
+			</legs>
+			<parent-of pindex="2" cindex="0">halfadder:And1</parent-of>
+			<parent-of pindex="1" cindex="0">halfadder:Xor1</parent-of>
+		</connector>
+		<connector id="halfadder:Connector2">
+			<legs>
+				<leg idx="0" x="235" y="185"/>
+				<leg idx="1" x="265" y="185"/>
+				<leg idx="2" x="285" y="185"/>
+			</legs>
+			<parent-of pindex="2" cindex="1">halfadder:Xor1</parent-of>
+			<parent-of pindex="1" cindex="1">halfadder:And1</parent-of>
+		</connector>
+	</circuit>
+	<circuit name="fulladder">
+		<card id="fulladder:halfadder1" base="halfadder">
+			<coords x="210" y="140"/>
+			<parent-of pindex="2" cindex="0">fulladder:Or1</parent-of>
+			<parent-of pindex="3" cindex="0">fulladder:halfadder2</parent-of>
+		</card>
+		<card id="fulladder:halfadder2" base="halfadder">
+			<coords x="250" y="220"/>
+			<parent-of pindex="2" cindex="1">fulladder:Or1</parent-of>
+			<parent-of pindex="3" cindex="0">fulladder:Bulb4</parent-of>
+		</card>
+		<switch id="fulladder:Switch0" number="0" label="Cin">
+			<coords x="100" y="100"/>
+			<parent-of pindex="0" cindex="0">fulladder:halfadder1</parent-of>
+		</switch>
+		<switch id="fulladder:Switch1" number="1" label="A">
+			<coords x="100" y="190"/>
+			<parent-of pindex="0" cindex="1">fulladder:halfadder1</parent-of>
+		</switch>
+		<switch id="fulladder:Switch2" number="2" label="B">
+			<coords x="100" y="280"/>
+			<parent-of pindex="0" cindex="1">fulladder:halfadder2</parent-of>
+		</switch>
+		<bulb id="fulladder:Bulb3" number="3" label="Cout">
+			<coords x="530" y="130"/>
+		</bulb>
+		<bulb id="fulladder:Bulb4" number="4" label="S">
+			<coords x="530" y="220"/>
+		</bulb>
+		<or id="fulladder:Or1">
+			<coords x="430" y="130"/>
+			<parent-of pindex="2" cindex="0">fulladder:Bulb3</parent-of>
+		</or>
+	</circuit>
+	<circuit name="4bitadder">
+		<card id="4bitadder:fulladder1" base="fulladder">
+			<coords x="310" y="180"/>
+			<parent-of pindex="4" cindex="0">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector1</parent-of>
+		</card>
+		<card id="4bitadder:fulladder2" base="fulladder">
+			<coords x="280" y="250"/>
+			<parent-of pindex="4" cindex="1">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector2</parent-of>
+		</card>
+		<card id="4bitadder:fulladder3" base="fulladder">
+			<coords x="270" y="310"/>
+			<parent-of pindex="4" cindex="2">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:Connector3</parent-of>
+		</card>
+		<card id="4bitadder:fulladder4" base="fulladder">
+			<coords x="290" y="380"/>
+			<parent-of pindex="4" cindex="3">4bitadder:Bulb_bank1</parent-of>
+			<parent-of pindex="3" cindex="0">4bitadder:Bulb13</parent-of>
+		</card>
+		<bulb_bank id="4bitadder:Bulb_bank1" size="4" fatPin="true" number="9" label="Sum">
+			<coords x="520" y="190"/>
+		</bulb_bank>
+		<switch_bank id="4bitadder:Switch_bank1" size="4" fatPin="true" number="0" label="A">
+			<coords x="90" y="150"/>
+			<parent-of pindex="0" cindex="1">4bitadder:fulladder1</parent-of>
+			<parent-of pindex="1" cindex="1">4bitadder:fulladder2</parent-of>
+			<parent-of pindex="2" cindex="1">4bitadder:fulladder3</parent-of>
+			<parent-of pindex="3" cindex="1">4bitadder:fulladder4</parent-of>
+		</switch_bank>
+		<switch_bank id="4bitadder:Switch_bank2" size="4" fatPin="true" number="4" label="B">
+			<coords x="90" y="340"/>
+			<parent-of pindex="0" cindex="2">4bitadder:fulladder1</parent-of>
+			<parent-of pindex="1" cindex="2">4bitadder:fulladder2</parent-of>
+			<parent-of pindex="2" cindex="2">4bitadder:fulladder3</parent-of>
+			<parent-of pindex="3" cindex="2">4bitadder:fulladder4</parent-of>
+		</switch_bank>
+		<connector id="4bitadder:Connector1">
+			<legs>
+				<leg idx="0" x="265" y="225"/>
+				<leg idx="1" x="455" y="225"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder2</parent-of>
+		</connector>
+		<connector id="4bitadder:Connector2">
+			<legs>
+				<leg idx="0" x="255" y="295"/>
+				<leg idx="1" x="425" y="295"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder3</parent-of>
+		</connector>
+		<connector id="4bitadder:Connector3">
+			<legs>
+				<leg idx="0" x="255" y="365"/>
+				<leg idx="1" x="425" y="365"/>
+			</legs>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder4</parent-of>
+		</connector>
+		<bulb id="4bitadder:Bulb13" number="13" label="Cout">
+			<coords x="540" y="390"/>
+		</bulb>
+		<switch id="4bitadder:Switch8" number="8" label="Cin">
+			<coords x="190" y="90"/>
+			<parent-of pindex="0" cindex="0">4bitadder:fulladder1</parent-of>
+		</switch>
+	</circuit>
+</project>
